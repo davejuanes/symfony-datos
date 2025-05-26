@@ -14,7 +14,7 @@ final class Version20250524033244 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return '';
+        return 'Initial configuration (fourn tables)';
     }
 
     public function up(Schema $schema): void
@@ -37,9 +37,9 @@ final class Version20250524033244 extends AbstractMigration
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql(<<<'SQL'
+        /* $this->addSql(<<<'SQL'
             CREATE SCHEMA public
-        SQL);
+        SQL); */
         $this->addSql(<<<'SQL'
             DROP TABLE comment
         SQL);
