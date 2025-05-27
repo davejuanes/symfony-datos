@@ -3,7 +3,8 @@
 {% block title %}Hello PageController!{% endblock %}
 
 {% block body %}
-    {% for product in products %}
+    {% for product in tag.products %}
+        <h1 class="mb-4">Resultado para: {{ tag.name }}</h1>
         {{ include('page/_product.html.twig') }}
     {% endfor %}
 {% endblock %}
