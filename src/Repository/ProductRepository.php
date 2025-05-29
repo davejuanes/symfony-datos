@@ -16,6 +16,18 @@ class ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Product::class);
     }
 
+    public function findLatest(): array {
+        // dd('llegamos');
+        $query = $this->getEntityManager()->createQuery(
+            'SELECT p
+            FROM App\Entity\Product p
+            ORDER BY p.id DESC'
+        )->setMaxResults(12);
+
+        // dd($query->getResult());
+        return $query->getResult();
+    }
+
     //    /**
     //     * @return Product[] Returns an array of Product objects
     //     */
