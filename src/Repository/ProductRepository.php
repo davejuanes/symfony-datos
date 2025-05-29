@@ -26,6 +26,20 @@ class ProductRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findByTag($tag): array {
+        return $this->createQueryBuilder('product')
+
+            ->setParameter('tag', $tag)
+            ->andWhere(':tag MEMBER OF product.tags')
+
+            ->addSelect('comments', 'tags')
+            ->leftJoin('product.comments', 'comments')
+            ->leftJoin('product.tags', 'tags')
+            ->orderBy('product.id', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return Product[] Returns an array of Product objects
     //     */

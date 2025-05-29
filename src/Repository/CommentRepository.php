@@ -16,6 +16,16 @@ class CommentRepository extends ServiceEntityRepository
         parent::__construct($registry, Comment::class);
     }
 
+    public function findAllComments(): array
+    {
+        return $this->createQueryBuilder('comment')
+            ->addSelect('product')
+            ->leftJoin('comment.product', 'product')
+            ->orderBy('comment.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return Comment[] Returns an array of Comment objects
     //     */
